@@ -21,3 +21,8 @@
 4. NPM run start
 
     `npm run start`
+    
+5. Open browser type
+
+    `localhost:3000`
+ 
