@@ -4,42 +4,20 @@
     </div>
     <form action="/" method="POST">
         <div class="card-wrapper d-flex justify-content-around align-items-center">
+            {{#each person}}
             <div class="card bg-dark text-white col-3">
-                <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5668/angry-developer.jpg" class="card-img" alt="...">
+                <img src="{{this.image}}" class="card-img" alt="...">
                 <div class="card-img-overlay">
-                    <h5 class="card-title text-dark">Engineer</h5>
+                    <h5 class="card-title text-dark">{{this.englishTitle}}</h5>
                 </div>
                 <div class="card-body">
                     <div class="custom-control custom-checkbox text-center">
-                        <input type="radio" id="engineer" name="job" value="engineer" {{#if engineer}} checked {{/if}}>
-                        <label for="engineer">Engineer</label>
+                        <input type="radio" id="{{this.englishTitle}}" name="job" value="{{this.englishTitle}}" {{#if this.selected}} checked {{/if}}>
+                        <label for="{{this.englishTitle}}">{{this.englishTitle}}</label>
                     </div>
                 </div>
             </div>
-            <div class="card bg-dark text-white col-3">
-                <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5667/angry-designer.jpg" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                    <h5 class="card-title text-dark">Designer</h5>
-                </div>
-                <div class="card-body">
-                    <div class="custom-control custom-checkbox text-center">
-                        <input type="radio" id="designer" name="job" value="designer" {{#if designer}} checked {{/if}}>
-                        <label for="designer">Designer</label>
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-dark text-white col-3">
-                <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5669/angry-founder.jpg" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                    <h5 class="card-title text-dark">Entrepreneur</h5>
-                </div>
-                <div class="card-body">
-                    <div class="custom-control custom-checkbox text-center">
-                        <input type="radio" id="entrepreneur" name="job" value="entrepreneur" {{#if entrepreneur}} checked {{/if}}>
-                        <label for="entrepreneur">Entrepreneur</label>
-                    </div>
-                </div>
-            </div>
+            {{/each}}
         </div>
         <div class="button m-4 text-center">
             <button class="btn btn-primary" type="submit">產生幹話</button>

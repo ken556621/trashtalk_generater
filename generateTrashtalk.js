@@ -8,13 +8,13 @@ function generateTrashtalk(option){
 
     let trashWords = '身為一位';
 
-    task.engineer[Math.floor(Math.random()*task.engineer.length)];
+    
     if(option.job === 'engineer'){
         trashWords += '工程師' + task.engineer[Math.floor(Math.random() * task.engineer.length)];
     }else if(option.job === 'designer'){
-        trashWords += '設計師' + task.designer[Math.floor(Math.random() * task.engineer.length)];
+        trashWords += '設計師' + task.designer[Math.floor(Math.random() * task.designer.length)];
     }else if(option.job === 'entrepreneur'){
-        trashWords += '企業家' + task.entrepreneur[Math.floor(Math.random() * task.engineer.length)];
+        trashWords += '企業家' + task.entrepreneur[Math.floor(Math.random() * task.entrepreneur.length)];
     }
 
     if(trashWords.length === 4){

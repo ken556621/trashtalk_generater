@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars');
 const app = new express();
 const port = 3000;
 const bodyParser = require('body-parser');
+const personList = require('./person-list.json');
 const generateTrashtalk = require('./generateTrashtalk')
 
 //setting template engine
@@ -14,23 +15,30 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //setting routes
 app.get('/', (req, res) => {
-    res.render('index');
+    const person = personList.results;
+    res.render('index', { person: person });
 })
 
 
-
-//render
 app.post('/', (req, res) => {
     const trashWord = generateTrashtalk(req.body);
-    const options = req.body.job || 'defaultText';
-    //handlebars if 不能做其他的判斷
-    const engineer = options.includes('engineer');
-    const designer = options.includes('designer');
-    const entrepreneur = options.includes('entrepreneur');
-    res.render('index', { trashWord: trashWord, engineer: engineer, designer: designer, entrepreneur: entrepreneur });
+    const person = personList.results;
+    
+    if(req.body.job === 'engineer'){
+        person[0].selected = true;
+        person[1].selected = false;
+        person[2].selected = false;
+    }else if(req.body.job === 'designer'){
+        person[0].selected = false;
+        person[1].selected = true;
+        person[2].selected = false;
+    }else if(req.body.job === 'entrepreneur'){
+        person[0].selected = false;
+        person[1].selected = false;
+        person[2].selected = true;
+    }
+    res.render('index', { person: person, trashWord: trashWord });
 })
-
-
 
 //listen to server
 app.listen(port, () => {
